@@ -107,11 +107,13 @@ void setup() {
 /***   Loop  ***/
 void loop() {
     DATOS_BT = bluetooth_de_la_placa.readString();
-    if (DATOS_BT == "traffic_green") {
+    if (DATOS_BT == "traffic_green" && gren_control!="encendido") {
         digitalWrite(led_BOT_VERDE, HIGH);
-        //LEDSTATUS[0]='1';
-        //COLORLED[0]='verde';
-        //ONOFF(LEDSTATUS,COLORLED); 
+        green_control="encendido";
+    }
+    else {
+        digitalWrite(led_BOT_VERDE, LOW);
+        green_control("apagado");
     }
 
     if (DATOS_BT == "traffic_red") {
