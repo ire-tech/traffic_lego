@@ -11,11 +11,7 @@ const int led_BOT_VERDE = 7;
 bqSoftwareSerial bluetooth_de_la_placa(0, 1, 19200);
 //Inicializamos y asignamos qué tipo de variables vamos a usar.
 int tiempo_int = 0;
-int contador_on = 0;
-int contador_off = 0;
-char Str4[]  = "";
-char LEDSTATUS[]="";
-char COLORLED[]="";
+char green_control = "";
 
 // readSring genera un IRQ para que entre el dat de BT.
 String DATOS_BT = bluetooth_de_la_placa.readString();
@@ -106,6 +102,7 @@ void setup() {
 
 /***   Loop  ***/
 void loop() {
+    // Cambiamos ahora el sistema para encender y apagar el LED verde de tal manera que cuando le das se apaga al momento debido al loop, pendiente de solucionarlo.
     DATOS_BT = bluetooth_de_la_placa.readString();
     if (DATOS_BT == "traffic_green" && gren_control!="encendido") {
         digitalWrite(led_BOT_VERDE, HIGH);
